@@ -13,7 +13,7 @@
 
 <hr />
 {% for post in post_list %}
-<p>{{ post }}</p>
+<p><span class="username">{{ post.author }}</span>: {{ post.body }}</p>
 {% endfor %}
 
 {% endblock main_content %}

@@ -1,5 +1,9 @@
+{% extends "base.html" %}
+
+{% block main_content %}
 <form method="post">
 {% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Join!" />
 </form>
+{% endblock main_content %}

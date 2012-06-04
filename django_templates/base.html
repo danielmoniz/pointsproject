@@ -2,12 +2,21 @@
 <html lang="en">
 {% load staticfiles %}
 <link type="text/css" rel="stylesheet" href="{% static 'main.css' %}" />
+<head>
+    <title>
+        {% block title %}Dan's Miracle Project 1.0{% endblock title %}
+    </title>
+</head>
 <div id="main-header">
 	{% block main_header %}
 	<div class="options">
 		{% block header_options %}
 		{% if user.is_authenticated %}
-		<span>{{ user.username }}</span>
+		<span class="username">{{ user.username }}</span>
+        {% endif %}
+        <br />
+		<a href="{% url social:new_post %}">home</a>
+		{% if user.is_authenticated %}
 		<a href="{% url users:logout %}?next={% url social:new_post %}">logout</a>
 		{% else %}
 		<a href="{% url users:join %}?next={{ request.path }}">join</a>
@@ -15,6 +24,8 @@
 		{% endif %}
 		{% endblock header_options %}
 	</div>
+    <div id="main-title">Dan's Super Miracle Project</div>
+    <hr />
 	{% endblock main_header %}
 </div>
 <div class="content">
