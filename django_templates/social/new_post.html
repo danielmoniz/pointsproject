@@ -1,4 +1,4 @@
-<form method="post">
+<form method="post" action="{% url social:new_post %}">
 {% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Join!" />
