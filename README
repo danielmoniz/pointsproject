@@ -1,11 +1,26 @@
-A simple project for a job application to Points.com.
+A simple project for a job application to Points.com. Note that this project
+contains very little CSS and no JavaScript in the name of speed. Polishing a
+web application takes time!
+
+Instructions to Run:
+I will assume the reviewer is using a Debian-based Linux system, eg. Ubuntu or
+Mint. Otherwise, installation instructions will vary.
+
+- Install Python 2.7.
+	- Instructions vary depending on OS version.
+	- To determine current version of Python, use:
+		$ sudo apt-get install python-dev
+		$ python --version
+- Install Django 1.4:
+	$ sudo apt-get install python-pip
+	$ sudo pip install python-django
+- Nagivate to the project directory and run:
+	$ python manage.py runserver
+- In your browser, navigate to:
+	http://localhost:8000/
+- Explore!
 
 Plan:
 - Signup page
 - Login screen
-- User profile page
-
-Possible additions:
-- Database
-	- Allow users to post on a global wall.
-	- Allow users to be friends with each other.
+- Global wall for posting
