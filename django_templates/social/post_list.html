@@ -1,3 +1,8 @@
+{% load social_tags %}
 {% for post in post_list %}
 {{ post }}
 {% endfor %}
+
+<hr />
+
+{% new_post_form %}

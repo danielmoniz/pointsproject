@@ -16,6 +16,14 @@ class PostListView(ListView):
     template_name = 'social/post_list.html'
     context_object_name = 'post_list'
 
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data(**kwargs)
+
+        # Add new_post form to the post list page.
+        context['new_post'] = render_to_response('social/new_post.html')
+
+        return context
+
 class PostCreateView(CreateView):
     model = Post
     form_class = PostForm
