@@ -13,6 +13,7 @@ class Post(models.Model):
 #### FORMS ####
 
 class PostForm(forms.ModelForm):
+    body = forms.CharField(widget=forms.Textarea(attrs={'cols': 50, 'rows': 3}))
     class Meta:
         model = Post
         fields = ('body',)

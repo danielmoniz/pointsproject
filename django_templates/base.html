@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+{% load staticfiles %}
+<link type="text/css" rel="stylesheet" href="{% static 'main.css' %}" />
+<div id="main-header">
+	{% block main_header %}
+	<div class="options">
+		{% block header_options %}
+		{% if user.is_authenticated %}
+		<span>{{ user.username }}</span>
+		<a href="{% url users:logout %}?next={% url social:new_post %}">logout</a>
+		{% else %}
+		<a href="{% url users:join %}?next={{ request.path }}">join</a>
+		<a href="{% url users:login %}?next={{ request.path }}">login</a>
+		{% endif %}
+		{% endblock header_options %}
+	</div>
+	{% endblock main_header %}
+</div>
+<div class="content">
+	{% block content %}
+	<div id="right-sidebar">
+		{% block right_sidebar %}
+		Right sidebar
+		{% endblock right_sidebar %}
+	</div>
+	<div id="left-sidebar">
+		{% block left_sidebar %}
+		Left sidebar
+		{% endblock left_sidebar %}
+	</div>
+	<div id="main-content">
+		{% block main_content %}
+			Main content
+		{% endblock main_content %}
+	</div>
+	{% endblock content %}
+</div>
+</html>

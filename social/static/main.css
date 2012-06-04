@@ -1,0 +1,27 @@
+#main-header {
+width:100%;
+min-height:50px;
+}
+
+#main-header .options {
+float:right;
+}
+
+#main-header .options span {
+margin:0 4px;
+}
+
+#left-sidebar {
+float:left;
+height:100%;
+width:150px;
+}
+#right-sidebar {
+float:right;
+height:100%;
+width:250px;
+}
+
+#main-content {
+float:left;
+}
