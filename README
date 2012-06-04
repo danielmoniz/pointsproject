@@ -1,0 +1,10 @@
+A simple project for a job application to Points.com.
+
+Plan:
+- Signup page
+- Login screen
+- User profile page
+
+Possible additions:
+- Database
+	- allow users to be friends with each other
