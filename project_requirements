@@ -1,4 +1,4 @@
 Requirements to run:
 - Django
 - python
-- 
+- sqlite3 (sudo apt-get install sqlite3)
