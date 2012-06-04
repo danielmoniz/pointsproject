@@ -10,13 +10,16 @@ from django.contrib.auth.decorators import login_required
 from social.models import Post, PostForm
 
 class PostCreateView(CreateView):
-    """The view for creating a post. Also handles listing posts."""
+    """The view for creating a post. Also handles listing posts on the global
+    wall.
+    """
     model = Post
     form_class = PostForm
     template_name = 'social/new_post.html'
 
-    #@method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        """Ensure the correct success/failure URLs are set for redirection.
+        """
         self.success_url = reverse('social:new_post')
         self.login_url = reverse('users:login') + '?next=' + request.path
         return super(PostCreateView, self).dispatch(request, *args, **kwargs)
@@ -48,6 +51,7 @@ class PostCreateView(CreateView):
 
 ### DEPRECATED ###
 class PostListView(ListView):
+    """Provide a list of Post objects to a template."""
     queryset = Post.objects.order_by('-date_created')
     model = Post
     template_name = 'social/post_list.html'

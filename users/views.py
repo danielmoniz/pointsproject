@@ -5,11 +5,8 @@ from django.http import HttpResponseRedirect
 
 from django.core.urlresolvers import reverse
 
-class UserCreateForm(UserCreationForm):
-    pass
-
 class UserCreateView(CreateView):
-    form_class = UserCreateForm
+    form_class = UserCreationForm
     template_name = 'users/join.html'
 
     def dispatch(self, request, *args, **kwargs):
