@@ -2,7 +2,9 @@
 
 {% block main_content %}
 
-<h1>Global Wall</h2>
+<div class="title">
+    <h1>Message Board</h2>
+</div>
 {% if form %}
     <form method="post" action="{% url social:new_post %}">
     {% csrf_token %}
