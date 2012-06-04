@@ -2,7 +2,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.views.generic import CreateView, ListView, DetailView
-#from django.template import RequestContext
+from django.contrib.auth.models import User
+
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from social.models import Post, PostForm
 
@@ -12,22 +15,35 @@ class PostCreateView(CreateView):
     form_class = PostForm
     template_name = 'social/new_post.html'
 
+    #@method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.success_url = reverse('social:new_post')
+        self.login_url = reverse('users:login') + '?next=' + request.path
         return super(PostCreateView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
+        """If the form is valid, check if the user is logged in. If not,
+        redirect them to the login screen if they have tried to post.
+        """
         post = form.save(commit=False)
-        post.author = self.request.user
-        post.save()
-        return HttpResponseRedirect(self.success_url)
+        if self.request.user.is_authenticated():
+            post.author = User.objects.get(id=self.request.user.id)
+            post.save()
+            return HttpResponseRedirect(self.success_url)
+        else:
+            return HttpResponseRedirect(self.login_url)
 
     def get_context_data(self, **kwargs):
+        """Add the list of posts to the page.
+        If the user is not logged in, do not include the new_post form.
+        """
         context = super(PostCreateView, self).get_context_data(**kwargs)
 
         # Add new_post form to the post list page.
         context['post_list'] = Post.objects.order_by('-date_created')
 
+        if not self.request.user.is_authenticated():
+            del context['form']
         return context
 
 ### DEPRECATED ###

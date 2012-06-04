@@ -3,11 +3,13 @@
 {% block main_content %}
 
 <h1>Global Wall</h2>
-<form method="post" action="{% url social:new_post %}">
-{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="Join!" />
-</form>
+{% if form %}
+    <form method="post" action="{% url social:new_post %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Join!" />
+    </form>
+{% endif %}
 
 <hr />
 {% for post in post_list %}
