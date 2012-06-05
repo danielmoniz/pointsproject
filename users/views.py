@@ -11,7 +11,7 @@ class UserCreateView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         # If the URL has a 'next' value, redirect appropriately.
-        if request.GET['next']:
+        if request.GET and request.GET['next']:
             self.success_url = request.GET['next']
         else:
             self.success_url = reverse('social:new_post')

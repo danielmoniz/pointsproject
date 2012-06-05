@@ -2,6 +2,16 @@ A simple project for a job application to Points.com. Note that this project
 contains very little CSS and no JavaScript in the name of speed. Polishing a
 web application takes time!
 
+Instructions to Test:
+- Perform instructions below in "Instructions to Run".
+- Navigate to the project directory.
+- In order to test the project, run:
+	$ python manage.py test social
+	- Note that my tests are all under social/tests.py. The entire project's
+	  tests can be run, but my only manually-written tests are in the 'social'
+	  app. To run all tests, run:
+		$ python manage.py test
+
 Instructions to Run:
 I will assume the reviewer is using a Debian-based Linux system, eg. Ubuntu or
 Mint. Otherwise, installation instructions will vary.
@@ -14,6 +24,14 @@ Mint. Otherwise, installation instructions will vary.
 - Install Django 1.4:
 	$ sudo apt-get install python-pip
 	$ sudo pip install python-django
+- Install Selenium for testing:
+	$ sudo pip install selenium
+- Download the project.
+	- Either run:
+	$ git clone git@github.com:danielmoniz/pointsproject.git
+	- Or, navigate to https://github.com/danielmoniz/pointsproject/downloads
+	  and download whichever format you prefer. Unzip/untar in a convenient
+	  location; this will be the project directory.
 - Nagivate to the project directory and run:
 	$ python manage.py runserver
 - In your browser, navigate to:
